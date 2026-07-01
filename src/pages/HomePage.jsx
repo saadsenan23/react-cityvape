@@ -126,7 +126,7 @@ export default function HomePage() {
             {[
               { value: '300+', label: 'Products'   },
               { value: '6',    label: 'Categories' },
-              { value: '2',    label: 'Locations'  },
+              { value: '3',    label: 'Locations'  },
             ].map(stat => (
               <div key={stat.label} className="text-center">
                 <div

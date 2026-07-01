@@ -10,7 +10,7 @@ export function useAdminShortcut() {
 
   useEffect(() => {
     const handler = (e) => {
-      if (e.ctrlKey && e.shiftKey && e.key === '.') {
+      if (e.ctrlKey && e.shiftKey && e.code === 'Period') {
         e.preventDefault()
         navigate('/admin/login')
       }

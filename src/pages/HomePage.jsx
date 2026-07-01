@@ -4,7 +4,7 @@ import { useTranslation } from '../hooks/useTranslation'
 import { useAppStore } from '../store/useAppStore'
 import ProductCard from '../components/ProductCard'
 import { products, categories } from '../assets/products'
-
+import{useFirebaseProducts} from '../store/useFirebaseProducts'
 // react-icons
 import { TbBottle }           from 'react-icons/tb'
 import { GiChemicalDrop }     from 'react-icons/gi'
@@ -51,6 +51,10 @@ const categoryVisuals = [
 export default function HomePage() {
   const { t, isRTL } = useTranslation()
   const { setActiveCategory } = useAppStore()
+
+
+  const { firebaseProducts } = useFirebaseProducts()
+  const featuredProducts = firebaseProducts.slice(0, 8)
 
   return (
     <div className="min-h-screen" dir={isRTL ? 'rtl' : 'ltr'}>
@@ -207,7 +211,7 @@ export default function HomePage() {
 
         <div className="flex justify-center mt-10">
           <Link to="/products" className="btn-primary">
-            {t('viewAll')} — {products.length} {t('allProducts')}
+            {t('viewAll')} — {firebaseProducts.length} {t('allProducts')}
           </Link>
         </div>
       </section>

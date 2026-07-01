@@ -3,7 +3,7 @@ node_modules/
 
 # Build
 dist/
-
+serviceAccountKey.json
 # Environment variables — مهم جداً لا ترفعها على GitHub
 .env
 .env.local

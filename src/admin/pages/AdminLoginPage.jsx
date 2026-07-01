@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { useAdminStore } from '../../store/useAdminStore'
@@ -27,19 +27,20 @@ const UserIcon = () => (
 )
 
 export default function AdminLoginPage() {
-  const [username, setUsername]     = useState('')
-  const [password, setPassword]     = useState('')
-  const [showPass, setShowPass]     = useState(false)
-  const [error, setError]           = useState('')
-  const [loading, setLoading]       = useState(false)
-  const { login, isAuthenticated }  = useAdminStore()
-  const navigate                    = useNavigate()
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+  const [showPass, setShowPass] = useState(false)
+  const [error, setError]       = useState('')
+  const [loading, setLoading]   = useState(false)
+  const { login, isAuthenticated } = useAdminStore()
+  const navigate = useNavigate()
 
-  // Already logged in
-  if (isAuthenticated) {
-    navigate('/admin/dashboard', { replace: true })
-    return null
-  }
+  // ✅ صح - جوا useEffect
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate('/admin/dashboard', { replace: true })
+    }
+  }, [isAuthenticated, navigate])
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -51,7 +52,6 @@ export default function AdminLoginPage() {
     }
 
     setLoading(true)
-    // Simulate async auth delay for realism
     await new Promise(r => setTimeout(r, 600))
 
     const result = login(username.trim(), password)

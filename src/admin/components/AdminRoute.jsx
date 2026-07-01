@@ -1,3 +1,6 @@
+import { Navigate } from 'react-router-dom'
+import { useAdminStore } from '../../store/useAdminStore'
+
 export default function AdminRoute({ children }) {
   const isAuthenticated = useAdminStore(s => s.isAuthenticated)
   const isLoading = useAdminStore(s => s.isLoading)

@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 /**
- * Secret keyboard shortcut: Ctrl + Shift + A
+ * Secret keyboard shortcut: Ctrl + Shift + .
  * Opens the admin login page from anywhere in the app.
  */
 export function useAdminShortcut() {
@@ -10,7 +10,7 @@ export function useAdminShortcut() {
 
   useEffect(() => {
     const handler = (e) => {
-      if (e.ctrlKey && e.shiftKey && e.key === 'A') {
+      if (e.ctrlKey && e.shiftKey && e.key === '.') {
         e.preventDefault()
         navigate('/admin/login')
       }
